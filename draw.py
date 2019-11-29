@@ -7,7 +7,8 @@ import pickle
 import PIL
 from PIL import Image, ImageFilter
 import PIL.ImageOps
-
+def pint():
+    print("hello ")
 
 def auto_canny(image, sigma=0.33):
     '''
@@ -25,7 +26,7 @@ def auto_canny(image, sigma=0.33):
     return edged
 
 def draw(file='tree',size=(0,0),sigma=.33):
-    image = cv2.imread('Inputs\\'+file+'.jpg')
+    image = cv2.imread('./tree.jpg')
     image = cv2.resize(image, size, fx=0.5, fy=0.5)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (3, 3), 0)
@@ -40,7 +41,7 @@ def draw(file='tree',size=(0,0),sigma=.33):
 
 def generate_path(file='tree',sigma=.33):
     edges = 255-draw(file,(300,300),sigma)
-    image = PIL.Image.open('Inputs\\' + file + '.jpg')
+    image = PIL.Image.open('./tree.jpg')
     image.thumbnail((400, 400), Image.NEAREST)
     simplified = single_line_image(edges)
     img = PIL.Image.fromarray(edges)
@@ -175,4 +176,4 @@ def dfs_tree_to_etch_path(G,startx,starty):
 
     return mvmts, nodes
 
-generate_path()
+
