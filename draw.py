@@ -51,7 +51,8 @@ def generate_path(file='tree',sigma=.33):
     plt.imshow(img, cmap='gray')
     plt.subplot(133)
     plt.imshow(simplified, cmap='gray')
-    plt.show()
+    #this command prints the graph comparisons of the path it is going to take
+    #plt.show()
     PIL.Image.fromarray(simplified).convert('RGBA').save('Previews\\' + file + '.png')
     pp,nn = pa_to_path(file)
     print("3")
@@ -85,9 +86,12 @@ def single_line_image(arr):
                         if imgSimple[iix, iiy] == 0:
                             #new_img[ix,iy] = arr[ix,iy]
                             G.add_edge((ix, iy), (iix, iiy))
+    print("here ig")
     G = max(nx.connected_component_subgraphs(G), key=len)
+
     for node in G.nodes:
         new_img[node[0], node[1]] = 0
+
     return new_img
 
 def load_path(file):
@@ -136,7 +140,8 @@ def pa_to_path(file):
     x_nodes = [z[0] for z in nodes]
     y_nodes = [z[1] for z in nodes]
     plt.scatter(x=x_nodes,y=y_nodes,s=1.)
-    plt.show()
+    #this also prints the path the graph is going to take and the linuxx in the pi cannot take that
+    #plt.show()
     return path, nodes
 
 
@@ -177,3 +182,4 @@ def dfs_tree_to_etch_path(G,startx,starty):
     return mvmts, nodes
 
 
+generate_path()
